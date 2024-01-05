@@ -7,9 +7,9 @@ created: 1699728736
 tags:
   - queued/area
   - type/🗺
-dg-publish: true
 ---
 
+<!---
 ```dataviewjs
 let daysOld = timeStr(new Date() - dv.current().file.ctime);
 let lastTended = timeStr(new Date() - dv.current().file.mtime);
@@ -24,15 +24,16 @@ function timeStr(i) {
 
 dv.el("small","This 🗺 is " + daysOld + " old, and was tended " + lastTended + " ago.");
 ```
+-->
 
 # [[programming.architecture.domain-driven-design|📝 Diseño guiado por el dominio (DDD)]]
 
 - Conceptos:
-	- [[software)](software.development.domain-concept.md|📝 Dominio (software)]]
-	- [[../Private/50_Archive/Integración continua.md|Integración continua]]
+	- [[software.development.domain-concept|📝 Dominio (software)]]
+	- [[Integración continua]]
 - Herramientas de diseño:
 	- [[domain-driven-design.tactical-design|📝 Diseño táctico (DDD)]]
-		- [[domain-driven-design.tactical-design.aggregate]]
+		- [[domain-driven-design.tactical-design.aggregate|Agregados]]
 		- [[domain-driven-design.tactical-design.repository|Capa de repositorio]]
 		- [[domain-driven-design.tactical-design.factory|Factoría]]
 		- [[domain-driven-design.tactical-design.layered-architecture|Arquitectura en capas]]

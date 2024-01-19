@@ -14,13 +14,4 @@ No voy a tener prisa por publicar, ni por implementar cosas en la web, o arregla
 
 Dicho todo esto, te suelto el brazo para que puedas dar una vuelta. Si sales mejor de como entraste, yo soy feliz 💖
 
-## ¿Por donde empiezo?
-
-Si no sabes que camino coger, te puedo hablar un poco de mí y de lo que puedes encontrar:
-- Me flipan los [[game.played-viewed|videojuegos]], su [[game.development|desarrollo]], y [[game.design|diseñarlos]] es mi vocación.
-	- El motor que más he utilizado es [[unity-3d|Unity]], aunque puede que se vengan más cosas 👀
-- Estudié [[programming|programación]], y aunque llevo años sin [[employment|empleo]], actualmente sigue siendo mi profesión.
-	- Mi especialidad es el desarrollo de microservicios con [[java|Java]] y [[spring-framework|Spring]], aunque también tengo interés en front con [[angular|Angular]] y [[react|React]], y por último automatización con [[python|Python]].
-- Siempre me ha interesado saber por qué hacemos lo que hacemos, cuando es consciente y auténtico, y cuando es automático e impuesto. Verás cosas sobre [[philosophy|filosofía]] y [[psichology|psicología]]: [[philosophy.practical.philosophical-practice|práctica filosófica]], [[philosophy.political.anarchy-relationship|anarquía relacional]], [[mindfulness]], [[slow living]], [[inteligencia emocional]]...
-- Aunque aún tengo una relación un poco tóxica con la [[productivity|productividad]], llevo tiempo enfocándolo a ahorrar tiempo y energía para poder disfrutar, aprender, cuidar, y cuidarme.
-- Practico un deporte minoritario llamado [[Jugger]], es un deporte de equipo y de balón con esgrima, tal y como suena. Aunque tiene un componente estratégico, a mi me ha llevado a interesarme más por la técnica de esgrima ([[HEMA]]) y el [[condicionamiento físico]].
+Si necesitas que te dé un punto de partida, aún no he publicado suficientes apuntes como para crear un mapa general, pero si te puedo hablar de [[index.now-im-doing|que estoy haciendo ahora]]

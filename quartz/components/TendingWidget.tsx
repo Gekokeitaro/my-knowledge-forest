@@ -1,24 +1,32 @@
 import { QuartzComponentConstructor, QuartzComponentProps } from "./types";
 
-const tendedTypes = {
-  'sprout': '🌱',
-  'sapling': '🌾',
-  'evergreen': '🌲',
-  'fruit': '🥭',
-  'signpost': '🗺️'
+const validTendings: { [key: string]: string } = {
+  sprout: '🌱',
+  sapling: '🌾',
+  evergreen: '🌲',
+  fruit: '🥭',
+  signpost: '🗺️'
 }
 
 export default (() => {
 
-  function TendingWidget({ cfg, fileData }: QuartzComponentProps) {
+  const TYPE_TAG = "type/";
 
-    if (typeof fileData.frontmatter === "undefined") return <span></span>;
+  function TendingWidget({ fileData }: QuartzComponentProps) {
 
-    let daysOld = Math.abs(new Date().getTime() - new Date(fileData.frontmatter!.created).getTime());
-    let lastTended = Math.abs(new Date().getTime() - new Date(fileData.frontmatter!.updated).getTime());
+    const noteType = fileData.frontmatter?.tags.find((tag) => { return tag.startsWith(TYPE_TAG) })?.split("/").pop();
+    const tendingType = noteType && validTendings[noteType] ? validTendings[noteType] : undefined;
+
+    const createdTime = fileData.frontmatter?.created;
+    const updatedTime = fileData.frontmatter?.updated;
+
+    if (tendingType === undefined || createdTime === undefined || updatedTime === undefined) return <span></span>
+
+    const daysOld = Math.abs(new Date().getTime() - new Date(createdTime).getTime());
+    const lastTended = Math.abs(new Date().getTime() - new Date(updatedTime).getTime());
 
 
-    return <small>Esta {tendedTypes['sprout']} tiene {time2Str(daysOld)} de vida, y fué atendida hace {time2Str(lastTended)}.</small>;
+    return <small>Esta {tendingType} tiene {time2Str(daysOld)} de vida, y fué atendida hace {time2Str(lastTended)}.</small>;
   }
 
   function time2Str(t: number) {

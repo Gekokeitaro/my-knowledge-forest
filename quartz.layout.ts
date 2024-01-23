@@ -20,7 +20,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta(),
-    Component.TagList(),
+    Component.TendingWidget(),
   ],
   left: [
     Component.PageTitle(),
@@ -28,9 +28,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer({
-      
+
       folderClickBehavior: "link",
-      sortFn: (a,b) => {
+      sortFn: (a, b) => {
         if ((!a.file && !b.file) || (a.file && b.file)) {
           return a.children.length > b.children.length ? -1 : 1;
         }
@@ -45,22 +45,22 @@ export const defaultContentPageLayout: PageLayout = {
         const CONTENT = "content/";
         const MD = ".md";
 
-        if(node.name !== "") return;
+        if (node.name !== "") return;
 
-        const rootNodes : FileNode[] = [];
+        const rootNodes: FileNode[] = [];
 
-        node.children.forEach( child => {
+        node.children.forEach(child => {
 
-          if(!child.file || !child.file.filePath) return;
+          if (!child.file || !child.file.filePath) return;
 
-          let parent : FileNode | undefined = undefined;
-          let childDepth = child.file.filePath.split('/').pop()?.split('.').slice(0,-1);
+          let parent: FileNode | undefined = undefined;
+          let childDepth = child.file.filePath.split('/').pop()?.split('.').slice(0, -1);
 
-          if(typeof childDepth !== "undefined" && childDepth.length > 1) {
-            
+          if (typeof childDepth !== "undefined" && childDepth.length > 1) {
+
             child.depth = childDepth.length;
 
-            while(childDepth.length > 1){
+            while (childDepth.length > 1) {
 
               childDepth.pop();
               const parentPath = CONTENT + childDepth.join('.') + MD;
@@ -68,14 +68,14 @@ export const defaultContentPageLayout: PageLayout = {
                 return parent.file && parent.file.filePath === parentPath;
               });
 
-              if(typeof parent !== "undefined") {
+              if (typeof parent !== "undefined") {
                 parent.children.push(child);
                 return;
               }
             }
           }
 
-          if(!parent) rootNodes.push(child);
+          if (!parent) rootNodes.push(child);
         })
 
         node.children = rootNodes;

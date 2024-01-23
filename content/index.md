@@ -1,10 +1,8 @@
 ---
 title: ¡Bienvenide!
 created: 2024-01-22T17:32
-updated: 2024-01-23T18:40
+updated: 2024-01-23T20:54
 ---
-
-# ¡Bienvenide!
 
 ¡Holis! De algún modo has topado con mi [[bosque de conocimientos]], o dicho de otra forma, mis apuntes (al menos los publicados).
 

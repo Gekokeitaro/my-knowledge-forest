@@ -1,14 +1,12 @@
 ---
 id: 1HKCOLQDS
-title: ¿Qué estoy haciendo ahora?
+title: ¿Que estoy haciendo ahora?
 created: 2024-01-22T17:32
-updated: 2024-01-23T18:44
+updated: 2024-01-23T20:54
 tags:
   - queued/note
   - type/sprout
 ---
-
-# ¿Qué estoy haciendo ahora?
 
 ## 01/2024
 

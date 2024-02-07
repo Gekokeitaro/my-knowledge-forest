@@ -1,7 +1,7 @@
 ---
 title: ¡Bienvenide!
 created: 2024-01-22T17:32
-updated: 2024-01-23T23:02
+updated: 2024-02-07T21:41
 ---
 
 ¡Holis! De algún modo has topado con mi [[knowledge-forest|bosque de conocimientos]], o dicho de otra forma, mis apuntes (al menos los que he publicado).

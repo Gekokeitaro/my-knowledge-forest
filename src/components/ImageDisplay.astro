@@ -1,0 +1,23 @@
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+// Ejemplo de cómo obtener entradas con imágenes
+const entries = await getCollection('blog');
+
+<div>
+  {entries.map(entry => (
+    <article>
+      {entry.data.image && (
+        <Image 
+          src={entry.data.image} 
+          alt={entry.data.imageAlt || ''} 
+          width={800} 
+          height={400} 
+          format="webp"
+          loading="lazy"
+        />
+      )}
+      <h2>{entry.data.title}</h2>
+    </article>
+  ))}
+</div> 

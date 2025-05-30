@@ -1,2 +1,29 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import 'rehype-callouts/theme/github';
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+li {
+  list-style-type: disc;
+}
+
+li li {
+  list-style-type: circle;
+}
+
+li li li {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: decimal;
+}

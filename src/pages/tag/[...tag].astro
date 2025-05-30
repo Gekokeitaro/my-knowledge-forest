@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = false;
+
+const notes = await getCollection('notes');
+const { tag } = Astro.params;
+const notesFiltered = notes.filter(note => {
+  if (tag) {
+    return note.data.tags.includes(tag);
+  }
+  return false;
+});
+---
+
+<Layout>
+  <div class="flex flex-col h-full w-full">
+    <h1 class="text-2xl mb-6">Notas con el tag: {tag}</h1>
+
+    <div class="grid grid-cols-3 gap-4">
+      {
+        notesFiltered.map(note => (
+          <a
+            href={`/note/${note.data.id}`}
+            class="p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors"
+          >
+            <div class="flex flex-col">
+              <h3 class="font-bold">{note.data.title}</h3>
+              <div class="flex flex-wrap gap-2 mt-2">
+                {note.data.tags.map((noteTag: string) => (
+                  <span class="text-sm bg-blue-100 px-2 py-1 rounded">
+                    {noteTag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

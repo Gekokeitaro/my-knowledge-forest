@@ -1,0 +1,58 @@
+---
+const links = [
+  {
+    title: 'Videojuegos',
+    description: 'Cosas a las que juego y desarrollo',
+    href: '/',
+  },
+  {
+    title: 'Lazy programming',
+    description: 'Apuntes y proyectos',
+    href: '/',
+  },
+  {
+    title: 'Relaciones interpersonales',
+    description: 'Cómo nos relacionamos con los demás y con nosotros mismos.',
+    href: '/',
+  },
+  {
+    title: 'Filosofía',
+    description: 'Conocer el funcionamiento de la mente humana y del mundo',
+    href: '/',
+  },
+  {
+    title: 'Psicología',
+    description: 'Descripción breve',
+    href: '/',
+  },
+  {
+    title: 'Acondicionamiento deportivo',
+    description: 'Apuntes y deportes',
+    href: '/',
+  },
+  {
+    title: 'Knowledge Management',
+    description: 'Descripción breve',
+    href: '/',
+  },
+  {
+    title: 'Productividad',
+    description: 'Descripción breve',
+    href: '/',
+  },
+];
+---
+
+{
+  links.map(link => (
+    <a
+      href={link.href}
+      class="p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors w-64 h-32"
+    >
+      <div class="flex flex-col items-center">
+        <h3 class="font-bold">{link.title}</h3>
+        <p class="text-sm text-gray-600">{link.description}</p>
+      </div>
+    </a>
+  ))
+}

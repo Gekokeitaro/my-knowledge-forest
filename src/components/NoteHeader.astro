@@ -1,0 +1,21 @@
+---
+import LastTended from './LastTended.astro';
+import TagList from './TagList.astro';
+
+const { headerInfo } = Astro.props;
+const { title, tags, created, modified } = headerInfo;
+---
+
+<header class="flex flex-col gap-4 border-b-4 p-4">
+  <h1 class="text-2xl font-bold">
+    {title.toUpperCase()}
+  </h1>
+  <div class="space-y-2">
+    {tags && <TagList tags={tags} />}
+    {
+      created && modified && (
+        <LastTended created={created} modified={modified} />
+      )
+    }
+  </div>
+</header>

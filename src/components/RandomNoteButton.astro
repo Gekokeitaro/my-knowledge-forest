@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  noteList: CollectionEntry<'notes'>[];
+}
+
+const { noteList } = Astro.props;
+const notesExceptWelcome = noteList.filter(note => note.data.id !== '000000');
+const randomNote =
+  notesExceptWelcome[Math.floor(Math.random() * notesExceptWelcome.length)];
+---
+
+<a href={`/note/${randomNote.id}`} class="w-full bg-blue-200 text-left p-2">
+  🎲 Perderse en el bosque
+</a>

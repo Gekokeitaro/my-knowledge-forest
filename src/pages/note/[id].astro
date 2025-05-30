@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import NoteHeader from '../../components/NoteHeader.astro';
+import NoteLocalMap from '../../components/NoteLocalMap.astro';
+import Layout from '../../layouts/Layout.astro';
+import NoteOutline from '../../components/NoteOutline.astro';
+
+export const getStaticPaths = async () => {
+  const notes = await getCollection('notes');
+
+  return notes.map(note => ({
+    params: { id: note.id },
+    props: { note },
+  }));
+};
+
+const {
+  note,
+  note: { data },
+} = Astro.props;
+const { title, tags, created, modified } = data;
+const { Content, headings } = await render(note);
+---
+
+<Layout>
+  <NoteLocalMap slot="noteLocalMap" />
+  <main class="grid gap-4 h-full w-full">
+    <article class="h-full flex flex-col border-4">
+      <NoteHeader headerInfo={{ tags, created, modified, title }} />
+      <section class="flex flex-col gap-4 p-4 w-full">
+        <div class="w-full">
+          <Content />
+        </div>
+      </section>
+    </article>
+  </main>
+  <NoteOutline slot="noteOutline" headings={headings} />
+</Layout>

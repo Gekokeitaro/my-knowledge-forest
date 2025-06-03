@@ -1,9 +1,10 @@
 ---
-import LastTended from './LastTended.astro';
+import LastTended from './LastTended.jsx';
 import TagList from './TagList.astro';
+import { getTileType } from '../utils/general.utils';
 
 const { headerInfo } = Astro.props;
-const { title, tags, created, modified } = headerInfo;
+const { title, tags, created, modified, noteType } = headerInfo;
 ---
 
 <header class="flex flex-col gap-4 border-b-4 p-4">
@@ -12,10 +13,13 @@ const { title, tags, created, modified } = headerInfo;
   </h1>
   <div class="space-y-2">
     {tags && <TagList tags={tags} />}
-    {
-      created && modified && (
-        <LastTended created={created} modified={modified} />
-      )
-    }
+    <small>
+      Esta {getTileType(noteType) ?? '❔'}
+      {
+        created && modified && (
+          <LastTended client:load created={created} modified={modified} />
+        )
+      }
+    </small>
   </div>
 </header>

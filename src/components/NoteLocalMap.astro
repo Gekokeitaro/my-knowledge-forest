@@ -1,8 +1,76 @@
 ---
+import { GraphMap } from '../classes/graphMap.class';
+import {
+  MAP_CENTER,
+  MAP_HEIGHT,
+  MAP_WIDTH,
+  TILE_TYPES,
+} from '../constants/general.constants';
+import type { MapCell, OutgoingLink } from '../types/general.types';
+import {
+  getMapRandomPosition,
+  getOutgoingLinksToDepth,
+} from '../utils/general.utils';
 
+const localMap = new GraphMap(MAP_HEIGHT, MAP_WIDTH);
+
+const { noteTitle, noteContent } = Astro.props;
+
+const currentCell: MapCell = {
+  tile: TILE_TYPES.PLAYER,
+  text: noteTitle,
+  url: '#',
+  urlActive: true,
+  exists: true,
+  target: undefined,
+  position: MAP_CENTER,
+};
+
+localMap.setCell(MAP_CENTER.y, MAP_CENTER.x, currentCell);
+
+const outgoingLinks: Map<string, OutgoingLink> =
+  getOutgoingLinksToDepth(noteContent);
+
+outgoingLinks.forEach((link, url) => {
+  const position = getMapRandomPosition(link.depth);
+  const cell: MapCell = {
+    tile: TILE_TYPES.UNKNOWN,
+    text: link.text,
+    url: url,
+    urlActive: true,
+    exists: true,
+    target: undefined,
+    position: position,
+  };
+  localMap.setCell(position.y, position.x, cell);
+});
+
+// TODO: Convertir los enlaces en celdas del mapa.
+// TODO: Distribuir las celdas del mapa de forma aleatoria.
+// TODO: Si la profundidad es 1 se generarán más cerca del centro del mapa.
+// TODO: Si la profundidad es 2 se generarán más lejos del centro del mapa.
+// TODO: Las referencias que no existan serán UNKNOWN y tendrán el enlace inactivo.
+// TODO: Conectar las celdas con líneas a partir de la propiedad target.
+// TODO: Mejorar la URL.
 ---
 
-<div class="flex flex-1 flex-col p-4 border-4">
+<div class="flex flex-col p-4 border-4 h-full">
   <p class="text-2xl font-bold text-center">MAP</p>
-  <div class="items-center">Map Content</div>
+  <div class="items-center">
+    {
+      localMap.getMap().map(row => (
+        <div class="flex flex-row justify-between">
+          {row.map(cell => (
+            <a
+              href={cell.url.replace('.md', '')}
+              title={cell.text}
+              class={`w-8 h-8 text-sm text-center ${cell.urlActive ? '' : 'opacity-50 pointer-events-none'}`}
+            >
+              {cell.tile}
+            </a>
+          ))}
+        </div>
+      ))
+    }
+  </div>
 </div>

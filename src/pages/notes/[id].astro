@@ -19,14 +19,17 @@ const {
   note: { data },
 } = Astro.props;
 const { title, tags, created, modified } = data;
+const noteType =
+  tags.find(tag => tag.includes('type'))?.split('/')[1] ?? 'none';
 const { Content, headings } = await render(note);
 ---
 
 <Layout>
-  <NoteLocalMap slot="noteLocalMap" />
+  <!-- Sólo necesitamos el contenido de la nota para calcular el mapa local -->
+  <NoteLocalMap slot="noteLocalMap" noteTitle={title} noteContent={note.body} />
   <main class="grid gap-4 h-full w-full">
     <article class="h-full flex flex-col border-4">
-      <NoteHeader headerInfo={{ tags, created, modified, title }} />
+      <NoteHeader headerInfo={{ tags, created, modified, title, noteType }} />
       <section class="flex flex-col gap-4 p-4 w-full">
         <div class="w-full">
           <Content />

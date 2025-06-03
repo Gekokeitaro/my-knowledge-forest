@@ -22,7 +22,7 @@ const notesFiltered = notes.filter(note => {
       {
         notesFiltered.map(note => (
           <a
-            href={`/note/${note.data.id}`}
+            href={`/notes/${note.id}`}
             class="p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors"
           >
             <div class="flex flex-col">

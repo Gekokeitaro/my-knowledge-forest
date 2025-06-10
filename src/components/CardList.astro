@@ -1,45 +1,12 @@
 ---
-const links = [
-  {
-    title: 'Juegos',
-    href: '/',
-  },
-  {
-    title: 'Programación "Lazy"',
-    href: '/',
-  },
-  {
-    title: 'Relaciones interpersonales',
-    href: '/',
-  },
-  {
-    title: 'Filosofía',
-    href: '/',
-  },
-  {
-    title: 'Psicología',
-    href: '/',
-  },
-  {
-    title: 'Acondicionamiento deportivo',
-    href: '/',
-  },
-  {
-    title: 'Personal Knowledge Management',
-    href: '/',
-  },
-  {
-    title: 'Otros',
-    href: '/',
-  },
-];
+import { canonLinks } from '../constants/general.constants';
 ---
 
 {
-  links.map(link => (
+  canonLinks.map(link => (
     <a
       href={link.href}
-      class="flex flex-col p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors w-64 h-32"
+      class="flex flex-col p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors w-56 h-32"
     >
       <div class="flex flex-col items-center justify-center h-full">
         <h3 class="font-bold text-center">{link.title}</h3>

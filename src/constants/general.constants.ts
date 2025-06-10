@@ -19,3 +19,38 @@ export const TILE_TYPES = {
   SPRING: '🌊',
   UNKNOWN: '❔',
 };
+
+export const canonLinks = [
+  {
+    title: 'Juegos',
+    href: '/',
+  },
+  {
+    title: 'Programación "Lazy"',
+    href: '/',
+  },
+  {
+    title: 'Relaciones interpersonales',
+    href: '/',
+  },
+  {
+    title: 'Filosofía',
+    href: '/',
+  },
+  {
+    title: 'Psicología',
+    href: '/',
+  },
+  {
+    title: 'Acondicionamiento deportivo',
+    href: '/',
+  },
+  {
+    title: 'Personal Knowledge Management',
+    href: '/',
+  },
+  {
+    title: 'Otros',
+    href: '/',
+  },
+];

@@ -14,7 +14,7 @@ const { title, tags, created, modified, noteType } = headerInfo;
   <div class="space-y-2">
     {tags && <TagList tags={tags} />}
     <small>
-      Esta {getTileType(noteType) ?? '❔'}
+      Esta {(noteType && getTileType(noteType)) || '❔'}
       {
         created && modified && (
           <LastTended client:load created={created} modified={modified} />

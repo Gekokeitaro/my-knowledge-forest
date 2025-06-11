@@ -1,11 +1,10 @@
 interface LastTendedProps {
-  created: string;
-  modified: string;
+  created: Date;
+  modified: Date;
 }
 
 export default function LastTended({ created, modified }: LastTendedProps) {
-  const getTimeDifference = (dateString: string) => {
-    const date = new Date(dateString);
+  const getTimeDifference = (date: Date) => {
     const now = new Date();
     const diffTime = Math.abs(now.getTime() - date.getTime());
     const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));

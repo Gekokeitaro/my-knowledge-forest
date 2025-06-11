@@ -9,6 +9,9 @@ import CardList from '../components/CardList.astro';
 import NoteHeader from '../components/NoteHeader.astro';
 import RandomNoteButton from '../components/RandomNoteButton.astro';
 import Layout from '../layouts/Layout.astro';
+import { NOTE_TYPES } from '../constants/general.constants';
+import type { NoteHeaderMetadata } from '../types/general.types';
+import { getNoteType } from '../utils/general.utils';
 
 const noteList = await getCollection('notes');
 
@@ -16,14 +19,21 @@ const welcomeNote = (await getEntry(
   'notes',
   'bienvenide-al-bosque-de-conocimientos'
 )) as CollectionEntry<'notes'>;
-const { tags, created, modified, title } = welcomeNote.data;
+const { title, tags } = welcomeNote.data;
+
+const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
+const headerMetadata: NoteHeaderMetadata = {
+  ...welcomeNote.data,
+  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+};
+
 const { Content } = await render(welcomeNote);
 ---
 
 <Layout>
   <div class="grid gap-4 h-full w-full">
     <div class="h-full flex flex-col border-4">
-      <NoteHeader headerInfo={{ tags, created, modified, title }} />
+      <NoteHeader headerMetadata={headerMetadata} />
       <div class="flex flex-col gap-4 p-4 w-full">
         <div class="w-full">
           <Content />

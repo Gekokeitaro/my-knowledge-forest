@@ -7,7 +7,7 @@ import {
 } from 'astro:content';
 import CardList from '../components/CardList.astro';
 import NoteHeader from '../components/NoteHeader.astro';
-import RandomNoteButton from '../components/RandomNoteButton.astro';
+import RandomNoteButton from '../components/RandomNoteButton';
 import Layout from '../layouts/Layout.astro';
 import { NOTE_TYPES } from '../constants/general.constants';
 import type { NoteHeaderMetadata } from '../types/general.types';
@@ -35,18 +35,31 @@ const { Content } = await render(welcomeNote);
     <div class="h-full flex flex-col border-4">
       <NoteHeader headerMetadata={headerMetadata} />
       <div class="flex flex-col gap-4 p-4 w-full">
-        <div class="w-full">
+        <div class="w-full space-y-4">
           <Content />
         </div>
-        <div class="flex place-self-center w-56">
-          <RandomNoteButton noteList={noteList} />
+        <div class="flex justify-center">
+          <p class="text-center m-2">
+            <span>Para explorar, haz click en</span>
+            <RandomNoteButton
+              className={'w-56 m-2'}
+              client:load
+              collection={noteList}
+            />
+            <span
+              >o empieza por mi canon personal con mis temas recurrentes.</span
+            >
+          </p>
         </div>
+
         <div class="flex items-center gap-4">
           <hr class="flex-1" />
           <h2 class="text-xl font-bold">PERSONAL CANON</h2>
           <hr class="flex-1" />
         </div>
-        <div class="flex flex-wrap gap-4 justify-center place-items-center">
+        <div
+          class="flex flex-wrap gap-4 justify-center place-items-center mt-10"
+        >
           <CardList />
         </div>
       </div>

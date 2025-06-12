@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import NavBar from '../components/NavBar.astro';
 import './src/styles/global.css';
-import RandomNoteButton from '../components/RandomNoteButton.astro';
+import RandomNoteButton from '../components/RandomNoteButton';
 
 const noteList = await getCollection('notes');
 ---
@@ -22,7 +22,7 @@ const noteList = await getCollection('notes');
     >
       <nav class="flex flex-col gap-4 h-full">
         <NavBar>
-          <RandomNoteButton noteList={noteList} />
+          <RandomNoteButton className={'w-full'} collection={noteList} />
         </NavBar>
         <slot name="noteLocalMap" />
       </nav>

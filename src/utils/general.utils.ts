@@ -1,11 +1,9 @@
 import fs from 'fs';
-import {
-  MAP_CENTER,
-  MAP_HEIGHT,
-  MAP_WIDTH,
-  TILE_TYPES,
-} from '../constants/general.constants';
-import type { OutgoingLink, Vector2 } from '../types/general.types';
+import { NOTE_TYPES, TILE_TYPES } from '../constants/general.constants';
+
+export const getNoteType = (noteType: string): string => {
+  return NOTE_TYPES[noteType.toUpperCase() as keyof typeof NOTE_TYPES];
+};
 
 export const getTileType = (tileType: string): string => {
   return TILE_TYPES[tileType.toUpperCase() as keyof typeof TILE_TYPES];

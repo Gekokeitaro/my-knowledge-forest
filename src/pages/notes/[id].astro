@@ -40,13 +40,12 @@ const { Content, headings } = await render(_note);
 ---
 
 <Layout>
-  <!-- Sólo necesitamos el contenido de la nota para calcular el mapa local -->
   <NoteLocalMap slot="noteLocalMap" noteTitle={title} />
   <main class="grid gap-4 h-full w-full">
-    <article class="h-full flex flex-col border-4">
+    <article class="h-full flex flex-col border-4 min-h-0">
       <NoteHeader headerMetadata={headerMetadata} />
-      <section class="flex flex-col gap-4 p-4 w-full">
-        <div class="w-full">
+      <section class="flex-1 flex flex-col w-full p-4 min-h-0">
+        <div class="flex-1 overflow-y-auto">
           <Content />
         </div>
       </section>

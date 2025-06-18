@@ -1,20 +1,11 @@
 ---
 import { GraphMap } from '../classes/graphMap.class';
-import {
-  MAP_CENTER,
-  MAP_HEIGHT,
-  MAP_WIDTH,
-  TILE_TYPES,
-} from '../constants/general.constants';
-import type { MapCell, OutgoingLink } from '../types/general.types';
-import {
-  getMapRandomPosition,
-  getOutgoingLinksToDepth,
-} from '../utils/general.utils';
+import { MAP_CENTER, TILE_TYPES } from '../constants/general.constants';
+import type { MapCell } from '../types/general.types';
 
-const localMap = new GraphMap(MAP_HEIGHT, MAP_WIDTH);
+const localMap = new GraphMap();
 
-const { noteTitle, noteContent } = Astro.props;
+const { noteTitle } = Astro.props;
 
 const currentCell: MapCell = {
   tile: TILE_TYPES.PLAYER,
@@ -28,23 +19,6 @@ const currentCell: MapCell = {
 
 localMap.setCell(MAP_CENTER.y, MAP_CENTER.x, currentCell);
 
-const outgoingLinks: Map<string, OutgoingLink> =
-  getOutgoingLinksToDepth(noteContent);
-
-outgoingLinks.forEach((link, url) => {
-  const position = getMapRandomPosition(link.depth);
-  const cell: MapCell = {
-    tile: TILE_TYPES.UNKNOWN,
-    text: link.text,
-    url: url,
-    urlActive: true,
-    exists: true,
-    target: undefined,
-    position: position,
-  };
-  localMap.setCell(position.y, position.x, cell);
-});
-
 // TODO: Convertir los enlaces en celdas del mapa.
 // TODO: Distribuir las celdas del mapa de forma aleatoria.
 // TODO: Si la profundidad es 1 se generarán más cerca del centro del mapa.
@@ -54,9 +28,10 @@ outgoingLinks.forEach((link, url) => {
 // TODO: Mejorar la URL.
 ---
 
-<div class="flex flex-col p-4 border-4 h-full">
+<div class="flex flex-col p-4 border-4 h-full relative">
   <p class="text-2xl font-bold text-center">MAP</p>
-  <div class="items-center">
+  <p class="text-xl absolute top-[50%] left-[30%]">Próximamente...</p>
+  <div class="items-center blur-sm">
     {
       localMap.getMap().map(row => (
         <div class="flex flex-row justify-between">

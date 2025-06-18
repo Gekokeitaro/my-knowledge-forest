@@ -31,15 +31,13 @@ const { Content } = await render(welcomeNote);
 ---
 
 <Layout>
-  <div class="grid gap-4 h-full w-full">
-    <div class="h-full flex flex-col border-4">
+  <main class="grid gap-4 h-full w-full">
+    <article class="h-full flex flex-col border-4 min-h-0">
       <NoteHeader headerMetadata={headerMetadata} />
-      <div class="flex flex-col gap-4 p-4 w-full">
+      <section class="flex flex-col gap-4 p-4 w-full">
         <div class="w-full space-y-4">
           <Content />
-        </div>
-        <div class="flex justify-center">
-          <p class="text-center m-2">
+          <p class="flex justify-center text-center items-center m-2">
             <span>Para explorar, haz click en</span>
             <RandomNoteButton
               className={'w-56 m-2'}
@@ -50,19 +48,19 @@ const { Content } = await render(welcomeNote);
               >o empieza por mi canon personal con mis temas recurrentes.</span
             >
           </p>
-        </div>
 
-        <div class="flex items-center gap-4">
-          <hr class="flex-1" />
-          <h2 class="text-xl font-bold">PERSONAL CANON</h2>
-          <hr class="flex-1" />
+          <div class="flex items-center gap-4">
+            <hr class="flex-1" />
+            <h2 class="text-xl font-bold">PERSONAL CANON</h2>
+            <hr class="flex-1" />
+          </div>
+          <div
+            class="flex flex-wrap gap-4 justify-center place-items-center mt-10"
+          >
+            <CardList />
+          </div>
         </div>
-        <div
-          class="flex flex-wrap gap-4 justify-center place-items-center mt-10"
-        >
-          <CardList />
-        </div>
-      </div>
-    </div>
-  </div>
+      </section>
+    </article>
+  </main>
 </Layout>

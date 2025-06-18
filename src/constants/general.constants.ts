@@ -1,5 +1,7 @@
 import type { Vector2 } from '../types/general.types';
 
+export const MARKDOWN_LINK_REGEX = /\[([^\]]*)\]\((\.\/[^\)]+)\)/gm;
+
 export const MAP_WIDTH = 7;
 export const MAP_HEIGHT = 15;
 
@@ -8,9 +10,7 @@ export const MAP_CENTER: Vector2 = {
   y: Math.floor(MAP_HEIGHT / 2),
 };
 
-export const TILE_TYPES = {
-  PLAYER: '@',
-  EMPTY: '.',
+export const NOTE_TYPES = {
   SPROUT: '🌱',
   SAPLING: '🌳',
   EVERGREEN: '🌲',
@@ -18,6 +18,12 @@ export const TILE_TYPES = {
   SIGNPOST: '🪧',
   SPRING: '🌊',
   UNKNOWN: '❔',
+};
+
+export const TILE_TYPES = {
+  ...NOTE_TYPES,
+  EMPTY: '.',
+  PLAYER: '@',
 };
 
 export const canonLinks = [

@@ -1,10 +1,14 @@
-import { TILE_TYPES } from '../constants/general.constants';
+import {
+  MAP_HEIGHT,
+  MAP_WIDTH,
+  TILE_TYPES,
+} from '../constants/general.constants';
 import type { MapCell } from '../types/general.types';
 
 export class GraphMap {
   private map: MapCell[][];
 
-  constructor(mapHeight: number, mapWidth: number) {
+  constructor(mapHeight: number = MAP_HEIGHT, mapWidth: number = MAP_WIDTH) {
     this.map = Array(mapHeight)
       .fill(null)
       .map((_, rowIndex) =>

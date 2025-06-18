@@ -2,34 +2,49 @@
 import { getCollection, render } from 'astro:content';
 import NoteHeader from '../../components/NoteHeader.astro';
 import NoteLocalMap from '../../components/NoteLocalMap.astro';
-import Layout from '../../layouts/Layout.astro';
 import NoteOutline from '../../components/NoteOutline.astro';
+import Layout from '../../layouts/Layout.astro';
+import type { Note, NoteHeaderMetadata } from '../../types/general.types';
+import { NOTE_TYPES } from '../../constants/general.constants';
+import { getNoteType } from '../../utils/general.utils';
+import { getOutgoingLinks } from '../../utils/markdown.utils';
 
 export const getStaticPaths = async () => {
   const notes = await getCollection('notes');
 
   return notes.map(note => ({
     params: { id: note.id },
-    props: { note },
+    props: {
+      _note: {
+        ...note,
+        outgoingLinks: (note.body && getOutgoingLinks(note.body)) || [],
+        ingoingLinks: [],
+      } satisfies Note<'notes'>,
+    },
   }));
 };
 
 const {
-  note,
-  note: { data },
+  _note,
+  _note: { data },
 } = Astro.props;
-const { title, tags, created, modified } = data;
-const noteType =
-  tags.find(tag => tag.includes('type'))?.split('/')[1] ?? 'none';
-const { Content, headings } = await render(note);
+const { title, tags } = data;
+
+const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
+const headerMetadata: NoteHeaderMetadata = {
+  ...data,
+  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+};
+
+const { Content, headings } = await render(_note);
 ---
 
 <Layout>
   <!-- Sólo necesitamos el contenido de la nota para calcular el mapa local -->
-  <NoteLocalMap slot="noteLocalMap" noteTitle={title} noteContent={note.body} />
+  <NoteLocalMap slot="noteLocalMap" noteTitle={title} />
   <main class="grid gap-4 h-full w-full">
     <article class="h-full flex flex-col border-4">
-      <NoteHeader headerInfo={{ tags, created, modified, title, noteType }} />
+      <NoteHeader headerMetadata={headerMetadata} />
       <section class="flex flex-col gap-4 p-4 w-full">
         <div class="w-full">
           <Content />

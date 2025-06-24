@@ -8,6 +8,7 @@ import type { Note, NoteHeaderMetadata } from '../../types/general.types';
 import { NOTE_TYPES } from '../../constants/general.constants';
 import { getNoteType } from '../../utils/general.utils';
 import { getOutgoingLinks } from '../../utils/markdown.utils';
+import Prose from '../../components/Prose';
 
 export const getStaticPaths = async () => {
   const notes = await getCollection('notes');
@@ -44,9 +45,11 @@ const { Content, headings } = await render(_note);
   <main class="grid gap-4 h-full w-full">
     <article class="h-full flex flex-col border-4 min-h-0">
       <NoteHeader headerMetadata={headerMetadata} />
-      <section class="flex-1 flex flex-col w-full py-4 pl-4 min-h-0">
-        <div class="flex-1 overflow-y-auto">
-          <Content />
+      <section class="flex-1 flex flex-col w-full min-h-0">
+        <div class="flex-1 overflow-y-auto px-4">
+          <Prose>
+            <Content />
+          </Prose>
         </div>
       </section>
     </article>

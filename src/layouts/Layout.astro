@@ -22,7 +22,7 @@ const noteList = await getCollection('notes');
     >
       <nav class="flex flex-col gap-4 h-full">
         <NavBar>
-          <RandomNoteButton className={'w-full'} collection={noteList} />
+          <RandomNoteButton className={'w-full'} collection={noteList} client:only="react"/>
         </NavBar>
         <slot name="noteLocalMap" />
       </nav>

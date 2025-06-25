@@ -6,6 +6,8 @@ import astroRehypeRelativeMarkdownLinks from 'astro-rehype-relative-markdown-lin
 
 import react from '@astrojs/react';
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -19,4 +21,8 @@ export default defineConfig({
   },
 
   integrations: [react()],
+
+  adapter: node({
+    mode: 'standalone',
+  }),
 });

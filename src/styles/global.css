@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
+/*@plugin '@tailwindcss/typography';*/
 
 @import 'rehype-callouts/theme/github';
 
@@ -8,7 +8,7 @@
   src: url("/fonts/CozetteVector.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @theme {
@@ -22,12 +22,9 @@ body {
   height: 100%;
 }
 
-ul {
-  padding-left: 1rem;
-}
-
 li {
   list-style-type: disc;
+  margin: .5rem 1rem;
 }
 
 li li {
@@ -38,9 +35,10 @@ li li li {
   list-style-type: square;
 }
 
-ol {
+ol li {
   list-style-type: decimal;
 }
+
 
 .overflow-y-auto::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -60,5 +58,10 @@ ol {
 }
 
 .astro-code {
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+}
+
+code {
   font-family: 'Cozette', 'sans-serif';
 }

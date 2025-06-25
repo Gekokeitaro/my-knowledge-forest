@@ -5,7 +5,10 @@
 <div class="flex flex-col gap-2 items-center p-4 border-4">
   <h2 class="text-2xl font-bold">MENU</h2>
   <a href="/" class="w-full bg-blue-200 text-left p-2">🏡 VOLVER AL INICIO</a>
-  <slot />
+  <div class="w-full relative">
+    <div class="w-full bg-blue-200 text-left p-2">🎲 PERDERSE EN EL BOSQUE</div>
+    <div class="absolute inset-0"><slot /></div>
+  </div>
   <a href="/tag/evergreen" class="w-full bg-blue-200 text-left p-2">
     🌲 ÁRBOLES DE CONOCIMIENTO
   </a>

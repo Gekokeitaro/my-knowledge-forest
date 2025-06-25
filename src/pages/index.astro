@@ -38,15 +38,18 @@ const { Content } = await render(welcomeNote);
         <div class="w-full space-y-4">
           <Content />
           <p class="flex justify-center text-center items-center m-2">
-            <span>Para explorar, haz click en</span>
-            <RandomNoteButton
-              className={'w-50 m-2'}
-              client:only="react"
-              collection={noteList}
-            />
-            <span
-              >o empieza por mi canon personal con mis temas recurrentes.</span
-            >
+            <span>Para explorar, haz click en
+            <span class="w-50 relative justify-center items-center">
+              <span class="w-full bg-blue-200 text-left p-2">🎲 PERDERSE EN EL BOSQUE</span>
+              <span class="absolute -top-1 left-0">
+                <RandomNoteButton
+                  className={'w-full'}
+                  client:only="react"
+                  collection={noteList}
+                />
+              </span>
+            </span>
+            o empieza por mi canon personal con mis temas recurrentes.</span>
           </p>
 
           <div class="flex items-center gap-4">

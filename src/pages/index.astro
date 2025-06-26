@@ -34,7 +34,7 @@ const { Content } = await render(welcomeNote);
   <main class="grid gap-4 h-full w-full">
     <article class="h-full flex flex-col border-4 min-h-0">
       <NoteHeader headerMetadata={headerMetadata} />
-      <section class="flex flex-col gap-4 p-4 w-full">
+      <section id="content" class="flex flex-col gap-4 p-4 w-full">
         <div class="w-full space-y-4">
           <Content />
           <p class="flex justify-center text-center items-center m-2">
@@ -51,7 +51,10 @@ const { Content } = await render(welcomeNote);
             </span>
             o empieza por mi canon personal con mis temas recurrentes.</span>
           </p>
-
+        </div>
+      </section>
+      <section>
+        <div class="w-full space-y-4">
           <div class="flex items-center gap-4">
             <hr class="flex-1" />
             <h2 class="text-xl font-bold">PERSONAL CANON</h2>

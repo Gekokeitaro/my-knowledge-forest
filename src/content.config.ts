@@ -4,7 +4,7 @@ import { defineCollection, z } from 'astro:content';
 const notes = defineCollection({
     loader: glob({
         pattern: '**/*.md',
-        base: './src/content/notes',
+        base: 'src/content/notes',
     }),
     schema: z.object({
         id: z.string(),

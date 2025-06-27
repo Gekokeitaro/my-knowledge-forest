@@ -1,19 +1,15 @@
 name: Deploy to Neocities
-
 env:
   FORCE_COLOR: 1
   NODE_VERSION: lts/*
-
 concurrency:
   group: deploy-to-neocities
   cancel-in-progress: true
-
 on:
   push:
     branches:
       - main
       # make sure your branch name matches! (ie. main, master, etc)
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -29,25 +25,30 @@ jobs:
         # this will use the latest LTS version of Node.js
         # if you need a specific version, replace ${{ env.NODE_VERSION }} with that version number
         
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
-        
-      - name: Cache npm dependencies
-        uses: actions/cache@v4
-        id: npm-cache
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          version: latest
+        
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+        
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-pnpm-store-
         # caches dependencies and other commonly re-used files
         # so they do not need to be re-installed on each run
         
       - name: Install dependencies and build site
         run: |
-          npm ci
-          npm run build
+          pnpm install --frozen-lockfile
+          pnpm run build
         
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@master

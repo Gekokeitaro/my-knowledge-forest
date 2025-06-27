@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import NavMenu from '../components/NavMenu.astro';
-import '../styles/global.css';
+import 'src/styles/global.css';
 import RandomNoteButton from '../components/RandomNoteButton';
 
 const noteList = await getCollection('notes');

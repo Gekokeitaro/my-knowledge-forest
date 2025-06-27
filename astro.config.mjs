@@ -17,7 +17,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [],
     //rehypePlugins: [[rehypeCallouts, { theme: "github" }]] --> Para anotar después
-    rehypePlugins: [rehypeCallouts, astroRehypeRelativeMarkdownLinks],
+    rehypePlugins: [[rehypeCallouts,  { theme: "github" }], astroRehypeRelativeMarkdownLinks],
   },
 
   integrations: [react()],

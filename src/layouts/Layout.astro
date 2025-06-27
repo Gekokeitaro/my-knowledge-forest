@@ -1,25 +1,37 @@
 ---
-import './src/styles/global.css';
+import { getCollection } from 'astro:content';
+import NavMenu from '../components/NavMenu.astro';
+import 'src/styles/global.css';
+import RandomNoteButton from '../components/RandomNoteButton';
+
+const noteList = await getCollection('notes');
 ---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Mi Knowledge Forest</title>
+  </head>
+  <body>
+    <div
+      class="grid grid-cols-[1.5fr_4fr_1.5fr] gap-4 p-4 h-full overflow-hidden"
+    >
+      <nav class="flex flex-col gap-4 h-full">
+        <NavMenu>
+          <RandomNoteButton className={'w-full block'} collection={noteList} client:only="react"/>
+        </NavMenu>
+        <slot name="noteLocalMap" />
+      </nav>
+      <div class="h-full overflow-hidden">
+        <slot />
+      </div>
+      <aside class="h-full">
+        <slot name="noteOutline" />
+      </aside>
+    </div>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

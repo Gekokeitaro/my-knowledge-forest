@@ -1,11 +1,72 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import {
+  getCollection,
+  getEntry,
+  render,
+  type CollectionEntry,
+} from 'astro:content';
+import CardList from '../components/CardList.astro';
+import NoteHeader from '../components/NoteHeader.astro';
+import RandomNoteButton from '../components/RandomNoteButton';
 import Layout from '../layouts/Layout.astro';
+import { NOTE_TYPES } from '../constants/general.constants';
+import type { NoteHeaderMetadata } from '../types/general.types';
+import { getNoteType } from '../utils/general.utils';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const noteList = await getCollection('notes');
+
+const welcomeNote = (await getEntry(
+  'notes',
+  'bienvenide-al-bosque-de-conocimientos'
+)) as CollectionEntry<'notes'>;
+const { title, tags } = welcomeNote.data;
+
+const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
+const headerMetadata: NoteHeaderMetadata = {
+  ...welcomeNote.data,
+  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+};
+
+const { Content } = await render(welcomeNote);
 ---
 
 <Layout>
-	<Welcome />
+  <main class="grid gap-4 h-full w-full">
+    <article class="h-full flex flex-col border-4 min-h-0">
+      <NoteHeader headerMetadata={headerMetadata} />
+      <section id="content" class="flex flex-col gap-4 p-4 w-full">
+        <div class="w-full space-y-4">
+          <Content />
+          <p class="flex justify-center text-center items-center m-2">
+            <span>Para explorar, haz click en
+            <span class="w-50 relative justify-center items-center">
+              <span class="w-full bg-blue-200 text-left p-2">🎲 PERDERSE EN EL BOSQUE</span>
+              <span class="absolute -top-1 left-0">
+                <RandomNoteButton
+                  className={'w-full'}
+                  client:only="react"
+                  collection={noteList}
+                />
+              </span>
+            </span>
+            o empieza por mi canon personal con mis temas recurrentes.</span>
+          </p>
+        </div>
+      </section>
+      <section>
+        <div class="w-full space-y-4">
+          <div class="flex items-center gap-4">
+            <hr class="flex-1" />
+            <h2 class="text-xl font-bold">PERSONAL CANON</h2>
+            <hr class="flex-1" />
+          </div>
+          <div
+            class="flex flex-wrap gap-4 justify-center place-items-center mt-10"
+          >
+            <CardList />
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
 </Layout>

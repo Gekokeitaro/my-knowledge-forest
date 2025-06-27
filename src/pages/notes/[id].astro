@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import NoteHeader from '../../components/NoteHeader.astro';
+import NoteLocalMap from '../../components/NoteLocalMap.astro';
+import NoteOutline from '../../components/NoteOutline.astro';
+import Layout from '../../layouts/Layout.astro';
+import type { Note, NoteHeaderMetadata } from '../../types/general.types';
+import { NOTE_TYPES } from '../../constants/general.constants';
+import { getNoteType } from '../../utils/general.utils';
+import { getOutgoingLinks } from '../../utils/markdown.utils';
+import Prose from '../../components/Prose';
+
+export const getStaticPaths = async () => {
+  const notes = await getCollection('notes');
+
+  return notes.map(note => ({
+    params: { id: note.id },
+    props: {
+      _note: {
+        ...note,
+        outgoingLinks: (note.body && getOutgoingLinks(note.body)) || [],
+        ingoingLinks: [],
+      } satisfies Note<'notes'>,
+    },
+  }));
+};
+
+const {
+  _note,
+  _note: { data },
+} = Astro.props;
+const { title, tags } = data;
+
+const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
+const headerMetadata: NoteHeaderMetadata = {
+  ...data,
+  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+};
+
+const { Content, headings } = await render(_note);
+---
+
+<Layout>
+  <NoteLocalMap slot="noteLocalMap" noteTitle={title} />
+  <main class="grid gap-4 h-full w-full">
+    <article class="h-full flex flex-col border-4 min-h-0">
+      <NoteHeader headerMetadata={headerMetadata} />
+      <section id="content" class="flex-1 flex flex-col w-full min-h-0">
+        <div class="flex-1 overflow-y-auto px-4">
+          <Prose>
+            <Content />
+          </Prose>
+        </div>
+      </section>
+    </article>
+  </main>
+  <NoteOutline slot="noteOutline" headings={headings} />
+</Layout>

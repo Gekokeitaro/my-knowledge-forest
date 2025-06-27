@@ -1,0 +1,25 @@
+---
+import LastTended from './LastTended.jsx';
+import TagList from './TagList.astro';
+
+// TODO: Arreglar tipados
+const { headerMetadata } = Astro.props;
+const { title, tags, created, modified, type } = headerMetadata;
+---
+
+<header class="flex flex-col gap-4 border-b-4 p-4">
+  <h1 class="text-2xl font-bold">
+    {title.toUpperCase()}
+  </h1>
+  <div class="space-y-2">
+    {tags && <TagList tags={tags} />}
+    <small>
+      Esta {type}
+      {
+        created && modified && (
+          <LastTended client:load created={created} modified={modified} />
+        )
+      }
+    </small>
+  </div>
+</header>

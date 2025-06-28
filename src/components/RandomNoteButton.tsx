@@ -19,7 +19,7 @@ export default function RandomNoteButton<K extends CollectionKey>({
       href={
         randomNote.data.id === '000000' ? '/' : `/notes/${randomNote?.id}`
       }
-      className={`bg-blue-200 text-left p-2 ${className}`}
+      className={`bg-[var(--pico-color-2)] text-left p-2 ${className}`}
     >
       🎲 PERDERSE EN EL BOSQUE
     </a>

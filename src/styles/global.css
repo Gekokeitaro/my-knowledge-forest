@@ -30,7 +30,7 @@
 
 
 @layer base {
-  html, body { @apply m-0 h-screen w-screen text-base/7 tracking-widest; }
+  html, body { @apply m-0 h-screen w-screen text-base/7 tracking-widest bg-[var(--pico-color-1)] text-[var(--pico-color-8)]; }
 
   #content {
     @apply hyphens-auto break-words wrap-break-word;   
@@ -40,16 +40,16 @@
     h2:not(#footnote-label) { @apply text-xl font-bold my-3 bg-[var(--pico-color-2)]; }
 
     h3::before { content: "[02]"; @apply ml-6 mr-2; }
-    h3 { @apply text-xl font-bold my-3 bg-[var(--pico-color-3)]; }
+    h3 { @apply text-xl font-bold my-3 bg-[var(--pico-color-14)]; }
 
     h4::before { content: "[03]"; @apply ml-10 mr-2; }
-    h4 { @apply text-xl font-bold my-3 bg-[var(--pico-color-14)]; }
+    h4 { @apply text-xl font-bold my-3 bg-[var(--pico-color-3)]; }
 
     h5::before { content: "[04]"; @apply ml-14 mr-2; }
-    h5 { @apply text-xl font-bold my-3 bg-[var(--pico-color-13)]; }
+    h5 { @apply text-xl font-bold my-3 bg-[var(--pico-color-6)]; }
 
     h6::before { content: "[05]"; @apply ml-18 mr-2; }
-    h6 { @apply text-xl font-bold my-3 bg-[var(--pico-color-15)]; }
+    h6 { @apply text-xl font-bold my-3 bg-[var(--pico-color-6)]; }
 
     .footnotes ol { @apply ml-4 text-[var(--pico-color-13)]; }
   }

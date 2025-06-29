@@ -14,7 +14,7 @@ on:
       - main
   workflow_call:
     inputs:
-      api_token:
+        token:
         required: true
         type: string
 

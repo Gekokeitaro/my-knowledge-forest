@@ -51,6 +51,8 @@
     h6::before { content: "[05]"; @apply ml-18 mr-2; }
     h6 { @apply text-xl font-bold my-3 bg-[var(--pico-color-6)]; }
 
+    p > a { @apply text-[var(--pico-color-13)]; }
+    
     .footnotes ol { @apply ml-4 text-[var(--pico-color-13)]; }
   }
 

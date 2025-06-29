@@ -1,15 +1,23 @@
 name: Deploy to Neocities
+
 env:
   FORCE_COLOR: 1
   NODE_VERSION: lts/*
+
 concurrency:
   group: deploy-to-neocities
   cancel-in-progress: true
+
 on:
   push:
     branches:
       - main
-      # make sure your branch name matches! (ie. main, master, etc)
+  workflow_call:
+    inputs:
+      api_token:
+        required: true
+        type: string
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,14 +41,13 @@ jobs:
           version: latest
         
       - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
         
       - name: Cache pnpm dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ env.STORE_PATH }}
+          path: ${{ steps.get-store-path.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
@@ -56,6 +63,5 @@ jobs:
         uses: bcomnes/deploy-to-neocities@master
         with:
           api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
-          cleanup: false
+          cleanup: true
           dist_dir: dist/client
-        # if dist_dir is within a subfolder, update the filepath to reflect that

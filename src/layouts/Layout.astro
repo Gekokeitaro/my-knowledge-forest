@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import NavMenu from '../components/NavMenu.astro';
+import NavMenu from '../components/NavMenu';
 import '../styles/global.css';
 import RandomNoteButton from '../components/RandomNoteButton';
 
@@ -17,21 +17,17 @@ const noteList = await getCollection('notes');
     <title>Mi Knowledge Forest</title>
   </head>
   <body>
-    <div
-      class="grid grid-cols-[1.5fr_4fr_1.5fr] gap-4 p-4 h-full overflow-hidden"
-    >
-      <nav class="flex flex-col gap-4 h-full">
+      <nav class="pb-4">
         <NavMenu>
-          <RandomNoteButton className={'w-full block'} collection={noteList} client:only="react"/>
+          <RandomNoteButton className={'block'} collection={noteList} client:only="react"/>
         </NavMenu>
         <slot name="noteLocalMap" />
       </nav>
-      <div class="h-full overflow-hidden">
+      <div>
         <slot />
       </div>
-      <aside class="h-full">
+      <aside class="pb-4">
         <slot name="noteOutline" />
       </aside>
-    </div>
   </body>
 </html>

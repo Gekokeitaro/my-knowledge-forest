@@ -4,80 +4,176 @@
 @import 'rehype-callouts/theme/github';
 
 @font-face {
-  @apply font-[cozette];
-  src: url("/fonts/CozetteVector.woff2") format("woff2");
+  font-family: 'cozette';
+  src: url('/fonts/CozetteVector.woff2') format('woff2');
+  font-display: swap;
 }
 
 @theme {
- --font-sans: "cozette", 'sans-serif';
- --pico-color-1: #000000;
- --pico-color-2: #1D2B53;
- --pico-color-3: #7E2553;
- --pico-color-4: #008751;
- --pico-color-5: #AB5236;
- --pico-color-6: #5F574F;
- --pico-color-7: #C2C3C7;
- --pico-color-8: #FFF1E8;
- --pico-color-9: #FF004D;
- --pico-color-10: #FFA300;
- --pico-color-11: #FFEC27;
- --pico-color-12: #00E436;
- --pico-color-13: #29ADFF;
- --pico-color-14: #83769C;
- --pico-color-15: #FF77A8;
- --pico-color-16: #FFCCAA;
+  --font-sans: 'cozette', ui-sans-serif, system-ui, sans-serif;
+  --pico-color-1: #000000;
+  --pico-color-2: #1d2b53;
+  --pico-color-3: #7e2553;
+  --pico-color-4: #008751;
+  --pico-color-5: #ab5236;
+  --pico-color-6: #5f574f;
+  --pico-color-7: #c2c3c7;
+  --pico-color-8: #fff1e8;
+  --pico-color-9: #ff004d;
+  --pico-color-10: #ffa300;
+  --pico-color-11: #ffec27;
+  --pico-color-12: #00e436;
+  --pico-color-13: #29adff;
+  --pico-color-14: #83769c;
+  --pico-color-15: #ff77a8;
+  --pico-color-16: #ffccaa;
 }
-
 
 @layer base {
-  html, body { @apply m-0 h-screen w-screen text-base/7 tracking-widest bg-[var(--pico-color-1)] text-[var(--pico-color-8)]; }
-
-  #content {
-    @apply hyphens-auto break-words wrap-break-word;   
-
-
-    h2:not(#footnote-label)::before { content: "[01]"; @apply mx-2; }
-    h2:not(#footnote-label) { @apply text-xl font-bold my-3 bg-[var(--pico-color-2)]; }
-
-    h3::before { content: "[02]"; @apply ml-6 mr-2; }
-    h3 { @apply text-xl font-bold my-3 bg-[var(--pico-color-14)]; }
-
-    h4::before { content: "[03]"; @apply ml-10 mr-2; }
-    h4 { @apply text-xl font-bold my-3 bg-[var(--pico-color-3)]; }
-
-    h5::before { content: "[04]"; @apply ml-14 mr-2; }
-    h5 { @apply text-xl font-bold my-3 bg-[var(--pico-color-6)]; }
-
-    h6::before { content: "[05]"; @apply ml-18 mr-2; }
-    h6 { @apply text-xl font-bold my-3 bg-[var(--pico-color-6)]; }
-
-    p > a { @apply text-[var(--pico-color-13)]; }
-    
-    .footnotes ol { @apply ml-4 text-[var(--pico-color-13)]; }
+  *,
+  ::after,
+  ::before {
+    @apply box-border m-0 p-0;
   }
 
-  code { @apply font-[cozette]; }
-    
-  li { @apply list-disc mx-4; }
-  
-  li li { @apply list-[circle]; }
-  
-  li li li { @apply list-[square]; }
-  
-  ol li { @apply list-decimal; }
-  
-  .overflow-y-auto::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  :is(html, body) {
+    @apply h-screen w-screen bg-[var(--pico-color-1)] text-[var(--pico-color-8)];
   }
-  
-  .overflow-y-auto::-webkit-scrollbar { @apply w-3 bg-[var(--pico-color-8)]; }
-  
-  .overflow-y-auto::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-[var(--pico-color-7)];
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+  body {
+    @apply px-4 pt-6 gap-4 grid grid-rows-[1fr] grid-cols-[1.5fr_4fr_1.5fr] text-base/7 tracking-widest;
+  }
+
+  main {
+    @apply flex flex-col;
+  }
+
+  nav {
+    @apply flex flex-col gap-8;
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    @apply text-xl font-bold text-balance;
+  }
+
+  article {
+    @apply p-1 -mt-1.5 flex flex-col gap-1 relative border-2 rounded-2xl border-[var(--pico-color-7)];
+
+    & > :is(section, header) {
+      @apply relative border-2 rounded-xl border-[var(--pico-color-7)];
+    }
+  }
+
+  code {
+    @apply font-[cozette];
+  }
+
+  li {
+    @apply list-disc mx-4;
+
+    li {
+      @apply list-[circle];
+
+      li {
+        @apply list-[square];
+      }
+    }
+  }
+
+  ol li {
+    @apply list-decimal;
+  }
+
+  .overflow-y-auto {
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar {
+      @apply w-3 bg-[var(--pico-color-8)];
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply rounded-lg bg-[var(--pico-color-7)];
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
   }
 }
 
-.astro-code {
-  @apply p-2 my-4;
+@layer components {
+  .personal-canon {
+    @apply h-full flex flex-wrap gap-4 justify-center items-center content-center p-4;
+  }
+
+  #content {
+    @apply hyphens-auto wrap-break-word gap-4 p-4 overflow-y-auto px-4 py-2 h-[calc(100vh-8.785rem)];
+
+    & p {
+      @apply text-pretty;
+    }
+
+    h2:not(#footnote-label) {
+      @apply my-3 bg-[var(--pico-color-2)];
+
+      &::before {
+        @apply content-['[01]'] mx-2;
+      }
+    }
+
+    h3 {
+      @apply my-3 bg-[var(--pico-color-14)];
+
+      &::before {
+        @apply content-['[02]'] ml-6 mr-2;
+      }
+    }
+
+    h4 {
+      @apply my-3 bg-[var(--pico-color-3)];
+
+      &::before {
+        @apply content-['[03]'] ml-10 mr-2;
+      }
+    }
+
+    h5 {
+      @apply my-3 bg-[var(--pico-color-6)];
+
+      &::before {
+        @apply content-['[04]'] ml-14 mr-2;
+      }
+    }
+
+    h6 {
+      @apply my-3 bg-[var(--pico-color-6)];
+
+      &::before {
+        @apply content-['[05]'] ml-18 mr-2;
+      }
+    }
+
+    .footnotes ol {
+      @apply ml-4 text-[var(--pico-color-13)];
+    }
+
+    .astro-code {
+      @apply p-2 my-4;
+    }
+  }
+
+  .rounded-container {
+    @apply flex flex-col relative p-4 border-2 rounded-lg border-[var(--pico-color-7)] outline-2 outline-offset-4 outline-[var(--pico-color-7)];
+  }
+
+  .container-title {
+    @apply text-2xl font-bold absolute -top-5 left-1/2 -translate-x-1/2 bg-[var(--pico-color-1)] before:content-['['] after:content-[']'];
+
+    &::before {
+      @apply text-2xl font-bold content-['['];
+    }
+
+    &::after {
+      @apply text-2xl font-bold content-[']'];
+    }
+  }
 }

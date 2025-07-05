@@ -101,6 +101,16 @@
 }
 
 @layer components {
+  [data-callout='spoiler'] {
+    & > .callout-content {
+      @apply blur-sm transition-all duration-1000;
+    }
+
+    &[open] > .callout-content {
+      @apply blur-none;
+    }
+  }
+
   .personal-canon {
     @apply h-full flex flex-wrap gap-4 justify-center items-center content-center p-4;
   }

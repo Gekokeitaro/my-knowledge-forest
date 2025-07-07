@@ -1,4 +1,4 @@
-export default function NavMenu() {
+export default function NavMenu({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-2 items-center rounded-container">
       <h2 className="container-title">MENU</h2>
@@ -9,9 +9,7 @@ export default function NavMenu() {
         <div className="w-full bg-[var(--pico-color-2)] text-left p-2">
           🎲 PERDERSE EN EL BOSQUE
         </div>
-        <div className="absolute inset-0">
-          <slot />
-        </div>
+        <div className="absolute inset-0">{children}</div>
       </div>
       <a
         href="/tag/evergreen"

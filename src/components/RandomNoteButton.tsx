@@ -1,3 +1,5 @@
+'use client';
+
 import type { CollectionEntry, CollectionKey } from 'astro:content';
 import { useState } from 'react';
 
@@ -16,9 +18,7 @@ export default function RandomNoteButton<K extends CollectionKey>({
 
   return (
     <a
-      href={
-        randomNote.data.id === '000000' ? '/' : `/notes/${randomNote?.id}`
-      }
+      href={randomNote.data.id === '000000' ? '/' : `/notes/${randomNote?.id}`}
       className={`bg-[var(--pico-color-2)] text-left p-2 ${className}`}
     >
       🎲 PERDERSE EN EL BOSQUE

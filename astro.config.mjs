@@ -23,6 +23,26 @@ export default defineConfig({
         {
           theme: 'github',
           callouts: {
+            note: {
+              title: 'Nota',
+              indicator: '',
+            },
+            warning: {
+              title: 'Advertencia',
+              indicator: '',
+            },
+            caution: {
+              title: 'Cuidado',
+              indicator: '',
+            },
+            important: {
+              title: 'Importante',
+              indicator: '',
+            },
+            tip: {
+              title: 'Consejo',
+              indicator: '',
+            },
             spoiler: {
               title: 'Spoiler',
               indicator: '<b>[SPOILER]</b>',

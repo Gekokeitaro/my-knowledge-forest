@@ -1,7 +1,6 @@
 @import 'tailwindcss';
-/*@plugin '@tailwindcss/typography';*/
-
 @import 'rehype-callouts/theme/github';
+/*@plugin '@tailwindcss/typography';*/
 
 @font-face {
   font-family: 'cozette';
@@ -27,6 +26,7 @@
   --pico-color-14: #83769c;
   --pico-color-15: #ff77a8;
   --pico-color-16: #ffccaa;
+  --pixel-sprout: url('/spritesheet.png') no-repeat;
 }
 
 @layer base {
@@ -108,6 +108,81 @@
 
     &[open] > .callout-content {
       @apply blur-none;
+    }
+  }
+
+  [data-callout='note'] {
+    --rc-color-light: var(--pico-color-13) !important;
+    --rc-color-dark: var(--pico-color-13) !important;
+    & .callout-title-text::before {
+      @apply content-[''] inline-block w-4 h-4 mr-2.5 scale-120 align-middle;
+
+      /* CSS personalizado para mask */
+      mask: url('/spritesheet.png') no-repeat;
+      mask-position: -16px -16px;
+      -webkit-mask: url('/spritesheet.png') no-repeat;
+      -webkit-mask-position: -16px -16px;
+      background-color: var(--pico-color-13);
+    }
+  }
+
+  [data-callout='tip'] {
+    --rc-color-light: var(--pico-color-12) !important;
+    --rc-color-dark: var(--pico-color-12) !important;
+    & .callout-title-text::before {
+      @apply content-[''] inline-block w-4 h-4 mr-2.5 scale-120 align-middle;
+
+      /* CSS personalizado para mask */
+      mask: url('/spritesheet.png') no-repeat;
+      mask-position: -64px -16px;
+      -webkit-mask: url('/spritesheet.png') no-repeat;
+      -webkit-mask-position: -64px -16px;
+      background-color: var(--pico-color-12);
+    }
+  }
+
+  [data-callout='important'] {
+    --rc-color-light: var(--pico-color-15) !important;
+    --rc-color-dark: var(--pico-color-15) !important;
+    & .callout-title-text::before {
+      @apply content-[''] inline-block w-4 h-4 mr-2.5 scale-120 align-middle;
+
+      /* CSS personalizado para mask */
+      mask: url('/spritesheet.png') no-repeat;
+      mask-position: 0px -16px;
+      -webkit-mask: url('/spritesheet.png') no-repeat;
+      -webkit-mask-position: 0px -16px;
+      background-color: var(--pico-color-15);
+    }
+  }
+
+  [data-callout='warning'] {
+    --rc-color-light: var(--pico-color-11) !important;
+    --rc-color-dark: var(--pico-color-11) !important;
+    & .callout-title-text::before {
+      @apply content-[''] inline-block w-4 h-4 mr-2.5 scale-120 align-middle;
+
+      /* CSS personalizado para mask */
+      mask: url('/spritesheet.png') no-repeat;
+      mask-position: -32px -16px;
+      -webkit-mask: url('/spritesheet.png') no-repeat;
+      -webkit-mask-position: -32px -16px;
+      background-color: var(--pico-color-11);
+    }
+  }
+
+  [data-callout='caution'] {
+    --rc-color-light: var(--pico-color-9) !important;
+    --rc-color-dark: var(--pico-color-9) !important;
+    & .callout-title-text::before {
+      @apply content-[''] inline-block w-4 h-4 mr-2.5 scale-120 align-middle;
+
+      /* CSS personalizado para mask */
+      mask: url('/spritesheet.png') no-repeat;
+      mask-position: -48px -16px;
+      -webkit-mask: url('/spritesheet.png') no-repeat;
+      -webkit-mask-position: -48px -16px;
+      background-color: var(--pico-color-9);
     }
   }
 

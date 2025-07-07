@@ -5,8 +5,6 @@ import NoteLocalMap from '../../components/NoteLocalMap.astro';
 import NoteOutline from '../../components/NoteOutline.astro';
 import Layout from '../../layouts/Layout.astro';
 import type { Note, NoteHeaderMetadata } from '../../types/general.types';
-import { NOTE_TYPES } from '../../constants/general.constants';
-import { getNoteType } from '../../utils/general.utils';
 import { getOutgoingLinks } from '../../utils/markdown.utils';
 import Prose from '../../components/Prose';
 
@@ -32,9 +30,10 @@ const {
 const { title, tags } = data;
 
 const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
+console.log(noteType);
 const headerMetadata: NoteHeaderMetadata = {
   ...data,
-  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+  type: noteType || 'unknown',
 };
 
 const { Content, headings } = await render(_note);

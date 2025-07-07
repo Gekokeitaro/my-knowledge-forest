@@ -101,6 +101,66 @@
 }
 
 @layer components {
+  [data-note='evergreen']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -0px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -0px -0px;
+    background-color: var(--pico-color-4);
+  }
+
+  [data-note='sapling']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -16px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -16px -0px;
+    background-color: var(--pico-color-4);
+  }
+
+  [data-note='sprout']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -32px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -32px -0px;
+    background-color: var(--pico-color-4);
+  }
+
+  [data-note='signpost']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -48px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -48px -0px;
+    background-color: var(--pico-color-5);
+  }
+
+  [data-note='source']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -64px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -64px -0px;
+    background-color: var(--pico-color-5);
+  }
+
+  [data-note='fruit']::after {
+    @apply content-[''] inline-block w-4 h-4 scale-175 mx-1;
+
+    mask: url('/spritesheet.png') no-repeat;
+    mask-position: -80px -0px;
+    -webkit-mask: url('/spritesheet.png') no-repeat;
+    -webkit-mask-position: -80px -0px;
+    background-color: var(--pico-color-9);
+  }
+
   [data-callout='spoiler'] {
     & > .callout-content {
       @apply blur-sm transition-all duration-1000;

@@ -14,7 +14,7 @@ const { title, tags, created, modified, type } = headerMetadata;
   <div class="space-y-2">
     {tags && <TagList tags={tags} />}
     <small>
-      Esta {type}
+      Esta <span data-note={type}></span>
       {
         created && modified && (
           <LastTended client:load created={created} modified={modified} />

@@ -9,9 +9,7 @@ import CardList from '../components/CardList.astro';
 import NoteHeader from '../components/NoteHeader.astro';
 import RandomNoteButton from '../components/RandomNoteButton';
 import Layout from '../layouts/Layout.astro';
-import { NOTE_TYPES } from '../constants/general.constants';
 import type { NoteHeaderMetadata } from '../types/general.types';
-import { getNoteType } from '../utils/general.utils';
 
 const noteList = await getCollection('notes');
 
@@ -24,7 +22,7 @@ const { title, tags } = welcomeNote.data;
 const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
 const headerMetadata: NoteHeaderMetadata = {
   ...welcomeNote.data,
-  type: (noteType && getNoteType(noteType)) || NOTE_TYPES.UNKNOWN,
+  type: noteType || 'unknown',
 };
 
 const { Content } = await render(welcomeNote);

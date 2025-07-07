@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import CardList from '../../components/CardList.astro';
 
 export const prerender = false;
 
@@ -15,29 +16,21 @@ const notesFiltered = notes.filter(note => {
 ---
 
 <Layout>
-  <div class="flex flex-col h-full w-full">
-    <h1 class="text-2xl mb-6">Notas con el tag: {tag}</h1>
+  <main class="p-1.5">
+    <section class="rounded-container h-[calc(100vh-2rem)] w-full p-4 -mt-1.5">
+      <h1 class="container-title">Notas con el tag: {tag}</h1>
 
-    <div class="grid grid-cols-3 gap-4">
-      {
+      <div class="grid grid-cols-3 gap-4">
+        {
         notesFiltered.map(note => (
           <a
             href={`/notes/${note.id}`}
-            class="p-4 border-2 rounded-lg hover:bg-blue-50 transition-colors"
+            class="p-4 border-2 rounded-lg hover:bg-[var(--pico-color-2)] transition-colors h-24 content-center"
           >
-            <div class="flex flex-col">
-              <h3 class="font-bold">{note.data.title}</h3>
-              <div class="flex flex-wrap gap-2 mt-2">
-                {note.data.tags.map((noteTag: string) => (
-                  <span class="text-sm bg-blue-100 px-2 py-1 rounded">
-                    {noteTag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <h3 class="font-bold text-balance text-center">{note.data.title}</h3>
           </a>
         ))
       }
-    </div>
-  </div>
+    </section>
+  </main>
 </Layout>

@@ -42,7 +42,7 @@ const { Content, headings } = await render(_note);
 <Layout>
   <NoteLocalMap slot="noteLocalMap" noteTitle={title} />
   <main>
-    <article>
+    <article class="flex flex-col gap-1">
       <NoteHeader headerMetadata={headerMetadata} />
       <section id="content">
         <Prose>

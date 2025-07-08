@@ -30,7 +30,7 @@ const { Content } = await render(welcomeNote);
 
 <Layout>
   <main>
-    <article class="h-[calc(100vh-2rem)] w-full">
+    <article class="h-[calc(100vh-2rem)] w-full flex flex-col gap-1">
       <NoteHeader headerMetadata={headerMetadata} />
       <section class="p-4 space-y-4">
         <Content />

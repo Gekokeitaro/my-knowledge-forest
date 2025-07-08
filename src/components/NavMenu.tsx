@@ -11,28 +11,16 @@ export default function NavMenu({ children }: { children: React.ReactNode }) {
         </div>
         <div className="absolute inset-0">{children}</div>
       </div>
-      <a
-        href="/tag/evergreen"
-        className="w-full bg-[var(--pico-color-2)] text-left p-2"
-      >
+      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         🌲 ÁRBOLES DE CONOCIMIENTO
       </a>
-      <a
-        href="/tag/fruit"
-        className="w-full bg-[var(--pico-color-2)] text-left p-2"
-      >
+      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         🍎 FRUTOS
       </a>
-      <a
-        href="/tag/signpost"
-        className="w-full bg-[var(--pico-color-2)] text-left p-2"
-      >
+      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         🪧 POSTES DE DIRECCIÓN
       </a>
-      <a
-        href="/tag/source"
-        className="w-full bg-[var(--pico-color-2)] text-left p-2"
-      >
+      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         💧 FUENTES DE SABIDURÍA
       </a>
     </div>

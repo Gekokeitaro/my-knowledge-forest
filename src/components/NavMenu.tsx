@@ -1,6 +1,6 @@
 export default function NavMenu({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-2 items-center rounded-container">
+    <div className="flex flex-col gap-2 items-center rounded-container relative">
       <h2 className="container-title">MENU</h2>
       <a href="/" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         🏡 VOLVER AL INICIO
@@ -12,16 +12,10 @@ export default function NavMenu({ children }: { children: React.ReactNode }) {
         <div className="absolute inset-0">{children}</div>
       </div>
       <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        🌲 ÁRBOLES DE CONOCIMIENTO
+        🔍 BUSCAR
       </a>
       <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        🍎 FRUTOS
-      </a>
-      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        🪧 POSTES DE DIRECCIÓN
-      </a>
-      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        💧 FUENTES DE SABIDURÍA
+        📅 LIFE TIMELINE
       </a>
     </div>
   );

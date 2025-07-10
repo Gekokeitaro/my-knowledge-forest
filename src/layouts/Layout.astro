@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import NavMenu from '../components/NavMenu';
 import '../styles/global.css';
 import RandomNoteButton from '../components/RandomNoteButton';
+import SearchDialog from '../components/search-dialog';
 
 const noteList = await getCollection('notes');
 ---
@@ -23,6 +24,7 @@ const noteList = await getCollection('notes');
         </NavMenu>
         <slot name="noteLocalMap" />
       </nav>
+      <SearchDialog collection={noteList} client:only="react"/>
       <div>
         <slot />
       </div>

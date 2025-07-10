@@ -60,3 +60,30 @@ export const canonLinks = [
     href: '/',
   },
 ];
+
+export const noteFilters = [
+  {
+    label: 'Brote',
+    value: 'sprout',
+  },
+  {
+    label: 'Retoño',
+    value: 'saplings',
+  },
+  {
+    label: 'Árbol',
+    value: 'evergreen',
+  },
+  {
+    label: 'Poste de dirección',
+    value: 'signpost',
+  },
+  {
+    label: 'Fuente',
+    value: 'source',
+  },
+  {
+    label: 'Fruta',
+    value: 'fruit',
+  },
+];

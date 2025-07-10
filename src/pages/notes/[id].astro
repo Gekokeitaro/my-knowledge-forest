@@ -30,7 +30,6 @@ const {
 const { title, tags } = data;
 
 const noteType = tags.find(tag => tag.includes('type'))?.split('/')[1];
-console.log(noteType);
 const headerMetadata: NoteHeaderMetadata = {
   ...data,
   type: noteType || 'unknown',

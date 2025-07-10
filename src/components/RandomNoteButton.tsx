@@ -12,7 +12,7 @@ export default function RandomNoteButton<K extends CollectionKey>({
   className,
   collection,
 }: RandomNoteProps<K>) {
-  const [randomNote, setRandomNote] = useState<CollectionEntry<K>>(
+  const [randomNote] = useState<CollectionEntry<K>>(
     collection[Math.floor(Math.random() * collection.length)]
   );
 

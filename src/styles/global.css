@@ -321,4 +321,8 @@
       @apply text-2xl font-bold content-[']'];
     }
   }
+
+  .search-dialog[open] {
+    @apply inset-0 z-50 grid place-items-center backdrop:bg-black/50;
+  }
 }

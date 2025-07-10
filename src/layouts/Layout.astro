@@ -6,6 +6,7 @@ import RandomNoteButton from '../components/RandomNoteButton';
 import SearchDialog from '../components/search-dialog';
 
 const noteList = await getCollection('notes');
+
 ---
 
 <!doctype html>
@@ -20,7 +21,10 @@ const noteList = await getCollection('notes');
   <body>
       <nav class="pb-4">
         <NavMenu>
-          <RandomNoteButton className={'block'} collection={noteList} client:only="react"/>
+          <RandomNoteButton className={'w-full block'} collection={noteList} client:only="react"/>
+          <button onclick="document.querySelector('dialog')?.showModal()" class="w-full bg-[var(--pico-color-2)] text-left p-2">
+            🔍 BUSCAR
+          </button>
         </NavMenu>
         <slot name="noteLocalMap" />
       </nav>

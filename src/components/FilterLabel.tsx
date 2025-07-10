@@ -20,7 +20,7 @@ export default function FilterButton({
     >
       <input
         type="checkbox"
-        onClick={() => filterHandler(filter)}
+        onChange={() => filterHandler(filter)}
         checked={checked}
         className="hidden"
       />

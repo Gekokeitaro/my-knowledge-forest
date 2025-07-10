@@ -5,15 +5,7 @@ export default function NavMenu({ children }: { children: React.ReactNode }) {
       <a href="/" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         🏡 VOLVER AL INICIO
       </a>
-      <div className="w-full relative">
-        <div className="w-full bg-[var(--pico-color-2)] text-left p-2">
-          🎲 PERDERSE EN EL BOSQUE
-        </div>
-        <div className="absolute inset-0">{children}</div>
-      </div>
-      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        🔍 BUSCAR
-      </a>
+      {children}
       <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
         📅 LIFE TIMELINE
       </a>

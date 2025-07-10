@@ -307,7 +307,7 @@
   }
 
   .rounded-container {
-    @apply relative p-4 border-2 rounded-lg border-[var(--pico-color-7)] outline-2 outline-offset-4 outline-[var(--pico-color-7)];
+    @apply p-4 border-2 rounded-lg border-[var(--pico-color-7)] outline-2 outline-offset-4 outline-[var(--pico-color-7)];
   }
 
   .container-title {

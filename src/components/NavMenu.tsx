@@ -6,8 +6,11 @@ export default function NavMenu({ children }: { children: React.ReactNode }) {
         🏡 VOLVER AL INICIO
       </a>
       {children}
-      <a href="#" className="w-full bg-[var(--pico-color-2)] text-left p-2">
-        📅 LIFE TIMELINE
+      <a
+        href="/notes/no-diario"
+        className="w-full bg-[var(--pico-color-2)] text-left p-2"
+      >
+        📝 NO-DIARIO
       </a>
     </div>
   );

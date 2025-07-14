@@ -44,6 +44,21 @@
     @apply px-4 pt-6 gap-4 grid grid-rows-[1fr] grid-cols-[1.5fr_4fr_1.5fr] text-base/7 tracking-widest;
   }
 
+  @media screen and (width < 1200px) and (-webkit-min-device-pixel-ratio: 1) {
+    body {
+      @apply relative;
+
+      &::before {
+        content: 'Esta página aún no está adaptada para dispositivos móviles. Por favor, visualízala desde un entorno de escritorio.';
+        @apply p-4 inline-flex text-balance items-center text-center justify-center absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xl z-50;
+      }
+
+      * {
+        @apply blur-2xl pointer-events-none overflow-hidden;
+      }
+    }
+  }
+
   main {
     @apply flex flex-col;
   }

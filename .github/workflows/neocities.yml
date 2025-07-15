@@ -85,5 +85,5 @@ jobs:
         uses: bcomnes/deploy-to-neocities@master
         with:
           api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
-          cleanup: true
+          cleanup: false
           dist_dir: dist/client

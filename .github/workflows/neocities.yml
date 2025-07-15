@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up GitLab token for submodules
+        run: |
+          git config --global url."https://oauth2:${{ secrets.GITLAB_SUBMODULE_TOKEN }}@gitlab.com/".insteadOf "https://gitlab.com/"
+
       - name: Checkout the repository code
         uses: actions/checkout@v4
         with:

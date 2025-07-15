@@ -12,35 +12,60 @@ on:
   push:
     branches:
       - main
-  repository_dispatch:
-    types: [deploy]
+  schedule:
+    - cron: '0 0 * * 5'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout the repository code
         uses: actions/checkout@v4
         with:
           submodules: recursive
-        
+          fetch-depth: 0
+
+      - name: Check for changes
+        id: check-for-changes
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          LAST_COMMIT=$(git log --oneline -n 1 --format="%H")
+
+          if git diff --quiet HEAD~1 HEAD || git submodule foreach --quiet 'git diff --quiet HEAD~1 HEAD 2>/dev/null || exit 1'; then
+            echo "No changes detected in main repository or submodules"
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Skip deployment if no changes
+        if: steps.check-for-changes.outputs.changes == 'false'
+        run: |
+          echo "No changes detected. Skipping deployment."
+          exit 0
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
         # this will use the latest LTS version of Node.js
         # if you need a specific version, replace ${{ env.NODE_VERSION }} with that version number
-        
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: latest
-        
+
       - name: Get pnpm store directory
         id: pnpm-cache
         run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-        
+
       - name: Cache pnpm dependencies
         uses: actions/cache@v4
         with:
@@ -50,12 +75,12 @@ jobs:
             ${{ runner.os }}-pnpm-store-
         # caches dependencies and other commonly re-used files
         # so they do not need to be re-installed on each run
-        
+
       - name: Install dependencies and build site
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
-        
+
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@master
         with:

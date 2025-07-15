@@ -21,7 +21,7 @@ export default function LastTended({ created, modified }: LastTendedProps) {
   const lastTended = getTimeDifference(modified);
 
   return (
-    <span className="text-center">
+    <span className="text-center font-semibold">
       se plantó hace {age} y fué regado hace {lastTended}
     </span>
   );

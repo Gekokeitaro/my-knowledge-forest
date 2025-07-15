@@ -266,7 +266,7 @@
   }
 
   #content {
-    @apply hyphens-auto wrap-break-word gap-4 p-4 overflow-y-auto px-4 py-2 h-[calc(100vh-8.785rem)];
+    @apply hyphens-auto wrap-break-word gap-4 p-4 overflow-y-auto px-4 py-2 h-[calc(100vh-6.75rem)];
 
     & p {
       @apply text-pretty;

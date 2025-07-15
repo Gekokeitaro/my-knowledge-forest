@@ -1,3 +1,3 @@
 [submodule "src/content"]
 	path = src/content
-	url = git@gitlab.com:Gekokeitaro/knowledge-forest-public.git
+	url = https://gitlab.com/Gekokeitaro/knowledge-forest-public.git

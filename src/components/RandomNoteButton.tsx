@@ -38,7 +38,7 @@ export default function RandomNoteButton<K extends CollectionKey>({
     (randomNote && (
       <a
         href={
-          randomNote.data.id === '000000' ? '/' : `/notes/${randomNote?.id}`
+          randomNote.data.id === '000000' ? '/' : `/notes/${randomNote?.id}/`
         }
         className={`bg-[var(--pico-color-2)] text-left p-2 ${className}`}
       >

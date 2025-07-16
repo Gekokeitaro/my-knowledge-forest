@@ -31,8 +31,9 @@ jobs:
       - name: Update submodule content with pull latest
         run: |
           cd src/content
+          git fetch origin
           git checkout main
-          git pull origin main
+          git reset --hard origin/main
           cd ../..
 
       - name: Install Node.js

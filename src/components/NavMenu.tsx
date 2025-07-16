@@ -7,7 +7,7 @@ export default function NavMenu({ children }: { children: React.ReactNode }) {
       </a>
       {children}
       <a
-        href="/notes/no-diario"
+        href="/notes/no-diario/"
         className="w-full bg-[var(--pico-color-2)] text-left p-2"
       >
         📝 NO-DIARIO

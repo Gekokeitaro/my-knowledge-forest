@@ -12,7 +12,7 @@ const { title, tags, created, modified, type } = headerMetadata;
     {title.toUpperCase()}
   </h1>
   <small>
-    <span class="" data-note={type}></span>
+    Este <span class="" data-note={type}></span>
     {
       created && modified && (
         <LastTended client:load created={created} modified={modified} />

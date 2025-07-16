@@ -28,6 +28,13 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Update submodule content with pull latest
+        run: |
+          cd src/content
+          git checkout main
+          git pull origin main
+          cd ../..
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:

@@ -59,6 +59,12 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
 
+      - name: Verificar contenido de dist/client antes del deploy
+        run: |
+          echo "::group::Contenido generado"
+          find dist/client -type f
+          echo "::endgroup::"
+
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@master
         with:

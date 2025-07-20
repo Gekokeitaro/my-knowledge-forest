@@ -113,6 +113,30 @@
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     }
   }
+
+  table {
+    @apply w-full mb-4;
+
+    th {
+      @apply border-2 p-2;
+    }
+
+    td {
+      @apply border-2 p-2;
+
+      sup {
+        @apply text-xl text-[var(--pico-color-13)];
+      }
+
+      sup::before {
+        @apply content-['['];
+      }
+
+      sup::after {
+        @apply content-[']'];
+      }
+    }
+  }
 }
 
 @layer components {

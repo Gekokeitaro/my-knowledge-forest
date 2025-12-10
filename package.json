@@ -9,15 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.2.2",
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/node": "^9.5.1",
+    "@astrojs/react": "^4.4.2",
     "@tailwindcss/vite": "^4.1.10",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "astro": "^5.10.1",
+    "astro": "^5.16.5",
     "astro-rehype-relative-markdown-links": "^0.18.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "rehype-callouts": "^2.1.0",
     "tailwindcss": "^4.1.10",
     "unist-util-visit": "^5.0.0"
